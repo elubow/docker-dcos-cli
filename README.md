@@ -11,4 +11,5 @@ docker run -e DCOS_CORE_URL=http://master.url -it elubow/docker-dcos-cli
 ```
 
 ### Older Versions
+* dcoscli - version 0.4.17 | elubow/docker-dcos-cli:0.4.17
 * dcoscli - version 0.4.14 | elubow/docker-dcos-cli:0.4.14
