@@ -29,7 +29,7 @@ COPY dcos.toml /tmp/
 RUN cp /tmp/dcos.toml /home/dcoscli/.dcos/dcos.toml && chmod 600 /home/dcoscli/.dcos/dcos.toml
 
 RUN mkdir -p /home/dcoscli/bin
-RUN curl -o /tmp/dcos https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.9/dcos
+RUN curl -o /tmp/dcos https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.10/dcos
 RUN cp /tmp/dcos /home/dcoscli/bin/dcos && chmod 755 /home/dcoscli/bin/dcos
 ENV HOME=/home/dcoscli
 ENV PATH=$PATH:/home/dcoscli/bin
