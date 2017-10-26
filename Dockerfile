@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER Eric Lubow <eric@lubow.org>
 
 ENV LC_ALL=en_US.UTF-8 \
@@ -10,13 +10,18 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential && \
+  apt-get install -y build-essential libreadline6 readline-common && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
-  apt-get install -y bash ca-certificates openssl jq python3 openssh-client && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get install -y bash ca-certificates openssl jq python3 openssh-client
 
-# handle java / readline later
+COPY install-package-support.sh /tmp/
+RUN cp /tmp/install-package-support.sh /tmp/install-packages.sh && chmod 600 /tmp/install-packages.sh
+RUN bash /tmp/install-packages.sh
+RUN rm -f /tmp/install-package-support.sh && rm -f /tmp/install-packages.sh
+
+# keep the image slim by removing caches
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
