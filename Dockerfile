@@ -13,7 +13,8 @@ RUN \
   apt-get install -y build-essential libreadline6 readline-common && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
-  apt-get install -y bash ca-certificates openssl jq python3 openssh-client
+  apt-get install -y bash ca-certificates openssl jq python3 openssh-client && \
+  apt-get install -y dnsutils docker.io
 
 COPY install-package-support.sh /tmp/
 RUN cp /tmp/install-package-support.sh /tmp/install-packages.sh && chmod 600 /tmp/install-packages.sh
