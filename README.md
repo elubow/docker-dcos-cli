@@ -31,6 +31,13 @@ $ dcos node ssh --master-proxy --mesos-id=12def92f-385a-439a-adbd-c52c0e61cf4d-S
 
 Alternatively, you can specify the key using the `MESOS_PEM` environment variable prior to startup.
 
+### Using console JMX
+For those times when you just can't get jconsole close enough to the network and need something more command line ish. The jar file included here is for command line JMX. For more information, check out the repo (https://github.com/cjmx/cjmx). Here is how to use the application.
+```
+JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+java -cp $JAVA_HOME/lib/tools.jar:/home/dcoscli/jars/cjmx_2.12-2.6.0-app.jar cjmx.Main $pid
+```
+
 ### Accessing HDFS
 Assuming that you have an HDFS cluster stood up and the container is inside the DCOS environment, you can do the following. You first need to ensure that you have the CLI tools for HDFS installed and then download the XML configuration files:
 

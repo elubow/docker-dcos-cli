@@ -16,6 +16,11 @@ RUN \
   apt-get install -y bash ca-certificates openssl jq python3 openssh-client && \
   apt-get install -y dnsutils docker.io
 
+# install JDK-8
+RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-get update && \
+    apt-get -y install openjdk-8-jdk openjdk-8-jre
+
 COPY install-package-support.sh /tmp/
 RUN cp /tmp/install-package-support.sh /tmp/install-packages.sh && chmod 600 /tmp/install-packages.sh
 RUN bash /tmp/install-packages.sh
@@ -30,14 +35,18 @@ RUN adduser --home /home/dcoscli dcoscli
 WORKDIR /home/dcoscli
 USER dcoscli
 RUN mkdir -p /home/dcoscli/.dcos \
-    && mkdir -p /home/dcoscli/.dcos/cache
+    && mkdir -p /home/dcoscli/.dcos/cache \
+    && mkdir -p /home/dcoscli/jars
 COPY dcos.toml /tmp/
 RUN cp /tmp/dcos.toml /home/dcoscli/.dcos/dcos.toml && chmod 600 /home/dcoscli/.dcos/dcos.toml
+COPY cjmx_2.12-2.6.0-app.jar /home/dcoscli/jars/
+COPY README.md /home/dcoscli/
 
 RUN mkdir -p /home/dcoscli/bin
 RUN curl -o /tmp/dcos https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.10/dcos
 RUN cp /tmp/dcos /home/dcoscli/bin/dcos && chmod 755 /home/dcoscli/bin/dcos
 ENV HOME=/home/dcoscli
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH=$PATH:/home/dcoscli/bin
 
 CMD ["/bin/bash", "/usr/local/bin/dcos.sh"]
