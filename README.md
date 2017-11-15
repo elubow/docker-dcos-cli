@@ -34,7 +34,7 @@ Alternatively, you can specify the key using the `MESOS_PEM` environment variabl
 ### Using console JMX
 For those times when you just can't get jconsole close enough to the network and need something more command line ish. The jar file included here is for command line JMX. For more information, check out the repo (https://github.com/cjmx/cjmx). Here is how to use the application.
 ```
-JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 java -cp $JAVA_HOME/lib/tools.jar:/home/dcoscli/jars/cjmx_2.12-2.6.0-app.jar cjmx.Main $pid
 ```
 
