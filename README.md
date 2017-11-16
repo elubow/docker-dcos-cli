@@ -48,6 +48,9 @@ $ dcos hdfs endpoints hdfs-site.xml > hadoop/hdfs-site.xml
 $ dcos hdfs endpoints core-site.xml > hadoop/core-site.xml
 ```
 
+## Shell Scripts
+There is a collection of shell scripts in the `$PATH` and located in `~/mesos_bin`. These scripts are put together to help debug problems and run queries for information that might not be available via the UIs.
+
 ## Environment Variables
 If you are launching this a docker container, environment variables are passed in via the command line (`-e`). If launching through Mesos, specify the variables and their values prior to launching the container.
 
