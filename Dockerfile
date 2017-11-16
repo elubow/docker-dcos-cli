@@ -47,7 +47,13 @@ RUN curl -o /tmp/dcos https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1
 RUN cp /tmp/dcos /home/dcoscli/bin/dcos && chmod 755 /home/dcoscli/bin/dcos
 ENV HOME=/home/dcoscli
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-ENV PATH=$PATH:/home/dcoscli/bin
+
+RUN mkdir -p /home/dcoscli/mesos_bin
+COPY mesos_bin /home/dcoscli/mesos_bin
+
+ENV PATH=$PATH:/home/dcoscli/bin:/home/dcoscli/mesos_bin
+
+
 
 CMD ["/bin/bash", "/usr/local/bin/dcos.sh"]
 
