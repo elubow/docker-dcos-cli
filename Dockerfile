@@ -53,6 +53,7 @@ COPY mesos_bin /home/dcoscli/mesos_bin
 
 ENV PATH=$PATH:/home/dcoscli/bin:/home/dcoscli/mesos_bin
 
+RUN git clone --depth 1 https://github.com/vishnu2kmohan/dcos-toolbox /home/dcoscli/dcos-toolbox
 
 
 CMD ["/bin/bash", "/usr/local/bin/dcos.sh"]
