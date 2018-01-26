@@ -1,6 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Eric Lubow <eric@lubow.org>
 
+RUN locale-gen "en_US.UTF-8"
+RUN echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/default/locale
 ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8
